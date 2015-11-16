@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export HOME='/'
+export PS1='\t [\u@\H:\l:\w]\$'
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias df="df -ah"
+alias du="du -h"
+alias free="free -m"
+alias p="ps fax"
+alias l="ls -halp --color"
+alias ls="ls -a --color"
+

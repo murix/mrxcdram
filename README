@@ -1,0 +1,31 @@
+
+Author: Murilo Rebelo Pontes <murilopontes@users.sourceforge.net>
+Homepage : http://murix.sourceforge.net
+License:  GPL version 2
+
+#######################################################################################
+* DIRECT REQUIREMENTS
+
+-syslinux: http://syslinux.zytor.com/
+
+#######################################################################################
+* DESCRIPTION: makes snapshots of the system, create ramdisks and bootable ISO images
+
+-snapshot.sh: create complete system snapshot
+
+-ramdisk.sh: create full-feature ramdisk
+
+-geniso.sh: create bootable ISO images with files created by ./ramdisk.sh and ./snapshot.sh
+
+#######################################################################################
+* EXAMPLE: create one bootable cd
+
+./ramdisk.sh
+./snapshot.sh
+./geniso.sh
+
+Congratulations, verify /tmp/mrxcdram-*.iso
+
+########################################################################################
+# EOF
+

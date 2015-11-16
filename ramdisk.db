@@ -1,0 +1,104 @@
+
+
+#*******smartmontools
+smartctl
+
+#*******bash
+bash
+
+#*******less
+less
+
+#*******grep
+grep   
+
+#*******findutils
+find
+
+#*******procps
+ps free
+
+#*******bzip2
+bzip2
+
+#*******gzip
+gzip 
+
+#*******tar
+tar
+
+#*******hdparm
+hdparm 
+
+#*******psmisc
+pstree killall
+
+#*******coreutils
+cut ln ls mv rm mkdir mknod cp dd df du sync chmod chroot cat hostname tail
+
+#*******util-linux
+uname mount umount agetty fdisk kill mkswap dmesg more
+
+#*******net-tools
+ifconfig route
+
+#*******net-kit_base 
+ping 
+
+#*******ettercap
+ettercap
+
+#*******tcpflow
+tcpflow
+
+#*******sysvinit
+init killall5 halt reboot
+
+#*******udev
+udev udevstart
+
+#*******mc
+mc
+
+#*******which
+which
+
+#*******modutils
+modprobe insmod rmmod depmod lsmod
+
+#******parted
+parted
+
+#*******e2fsprogs
+e2fsck mke2fs resize2fs badblocks tune2fs
+
+#*******reiserfsprogs
+mkreiserfs reiserfsck resize_reiserfs
+
+#************dhcpcd
+dhcpcd
+
+#***************mplayer
+mplayer
+
+#***********apache
+httpd
+
+#*************alsa-utils
+amixer alsamixer
+
+#****************grub
+grub
+
+#***********openssh
+ssh sshd scp
+
+#**********
+sysctl
+
+#**********
+syslogd klogd
+
+
+
+

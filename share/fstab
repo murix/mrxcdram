@@ -1,0 +1,8 @@
+/dev/root          /             minix    defaults               0 0
+proc               /proc         proc     defaults               0 0
+devpts             /dev/pts      devpts   defaults               0 0
+shm                /dev/shm      tmpfs    defaults               0 0
+usbfs              /proc/bus/usb usbfs    defaults               0 0
+sysfs              /sys          sysfs    defaults               0 0
+/dev/fd0           /mnt/floppy   auto     noauto,users           0 0
+/dev/cdrom         /mnt/cdrom    auto     noauto,users           0 0

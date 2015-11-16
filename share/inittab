@@ -1,0 +1,13 @@
+id:3:initdefault:
+kb::ctrlaltdel:init 6
+l0:0:wait:/etc/murix.sh 0
+l1:1:wait:/etc/murix.sh 1
+l2:2:wait:/etc/murix.sh 2
+l3:3:wait:/etc/murix.sh 3
+l4:4:wait:/etc/murix.sh 4
+l5:5:wait:/etc/murix.sh 5
+l6:6:wait:/etc/murix.sh 6
+c1:12345:respawn:agetty tty1 115200 -n -l /bin/bash
+c2:12345:respawn:agetty tty2 115200 -n -l /bin/bash
+c3:12345:respawn:agetty tty3 115200 -n -l /bin/bash
+c4:12345:respawn:agetty tty4 115200 -n -l /bin/bash
