@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 source version.sh
 
 function echo_ok(){
-    echo -e "\33[A\33[40G\33[1;32mOK\33[m"
+    echo -e "\033[A\033[40G\033[1;32mOK\033[m"
 }
 
 function echo_erro(){
-    echo -e "\33[A\33[40G\33[1;5;37;41mERRO\33[m"
+    echo -e "\033[A\033[40G\033[1;5;37;41mERRO\033[m"
 }
 
 function mrxoutcode(){
@@ -19,7 +19,7 @@ function mrxoutcode(){
 }
 
 function mrxtext() {
-echo -e "\33[01;33m$@\33[m"
+echo -e "\033[01;33m$@\033[m"
 }
 
 
@@ -31,10 +31,7 @@ mrxtext "################################################################"
 export MNT="/tmp/ramdisk_temp"
 export CMDLIST="ramdisk.db"
 export DEPLIST="/tmp/ramdisk_list"
-export RAMIMAGE="/tmp/ramdisk_image"
-export RAMMOUNTDIR="/tmp/ramdisk_mountdir"
-export LOOPDEV="loop3"
-export FOLGA_EM_KB="2000"
+export RAMIMAGE="/tmp/ramdisk_image.cpio.gz"
 
 
 mrxtext "desmontar loop se ocupado"
@@ -46,9 +43,7 @@ fi
 
 mrxtext "limpar tempario"
 rm -rf $MNT
-rm -rf $RAMMOUNTDIR
 rm -rf $RAMIMAGE
-rm -rf $RAMIMAGE.gz
 rm -rf $DEPLIST
 
 
@@ -142,41 +137,17 @@ chmod -R 755 $MNT/{bin,lib}
 chmod 4755   $MNT/bin/mplayer
 
 
-
-mrxtext "calcular tamanho do temporario"
-export tamanho=`du -sk $MNT | grep $MNT | tr -s [:blank:] "_" | cut -f1 -d "_"`
-
-mrxtext "adiciona folga na tamanho"
-export tamanho=$(($tamanho+$FOLGA_EM_KB))
-
-mrxtext "cria imagem com $tamanho KB"
-dd if=/dev/zero of=$RAMIMAGE bs=1k count=$tamanho
-mrxoutcode
-
-mrxtext "formatar imagem"
-mkfs.minix $RAMIMAGE $tamanho
-mrxoutcode
-
-mrxtext "montar imagem no loop"
-mkdir -p $RAMMOUNTDIR
-mount $RAMIMAGE $RAMMOUNTDIR -t minix -o loop=/dev/$LOOPDEV
-mrxoutcode
-
-mrxtext "copiar de $MNT para $RAMMOUNTDIR"
-cp -a $MNT/* $RAMMOUNTDIR
-
 mrxtext "criar links ocultos"
-ln -s /etc/profile 	$RAMMOUNTDIR/.bashrc
-ln -s /etc/profile 	$RAMMOUNTDIR/.profile
-mknod -m 600 $RAMMOUNTDIR/dev/console c 5 1 
-mknod -m 666 $RAMMOUNTDIR/dev/null c 1 3    
+ln -s /etc/profile 	$MNT/.bashrc
+ln -s /etc/profile 	$MNT/.profile
+ln -s /bin/bash 	$MNT/init
 
-mrxtext "desmontar imagem"
-umount -d $RAMMOUNTDIR
-mrxoutcode
 
-mrxtext "compactar imagem"
-gzip -v -9 $RAMIMAGE
+mknod -m 600 $MNT/dev/console c 5 1 
+mknod -m 666 $MNT/dev/null c 1 3    
+
+cd $MNT
+find . | cpio -H newc -o | gzip > $RAMIMAGE
 
 if [ -f /boot/ramdisk.gz  ] ; then
     mrxtext "fazer backup da imagem atual"
@@ -184,8 +155,7 @@ if [ -f /boot/ramdisk.gz  ] ; then
 fi
 
 mrxtext "instalar a nova imagem"
-mv -v $RAMIMAGE.gz /boot/ramdisk.gz
-
+mv -v $RAMIMAGE /boot/ramdisk.gz
 
 mrxtext "ajuste no seu carregador de boot o tamanho do ramdisk para $tamanho"
 

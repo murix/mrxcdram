@@ -45,12 +45,6 @@ ifconfig route
 #*******net-kit_base 
 ping 
 
-#*******ettercap
-ettercap
-
-#*******tcpflow
-tcpflow
-
 #*******sysvinit
 init killall5 halt reboot
 
@@ -77,9 +71,6 @@ mkreiserfs reiserfsck resize_reiserfs
 
 #************dhcpcd
 dhcpcd
-
-#***************mplayer
-mplayer
 
 #***********apache
 httpd
